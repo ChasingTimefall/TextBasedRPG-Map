@@ -1,0 +1,7 @@
+C:\Users\W0487821\Documents\MyRepos\TextBasedRPG-Map\TextBasedRPG-Map\bin\Debug\TextBasedRPG-Map.exe.config
+C:\Users\W0487821\Documents\MyRepos\TextBasedRPG-Map\TextBasedRPG-Map\bin\Debug\TextBasedRPG-Map.exe
+C:\Users\W0487821\Documents\MyRepos\TextBasedRPG-Map\TextBasedRPG-Map\bin\Debug\TextBasedRPG-Map.pdb
+C:\Users\W0487821\Documents\MyRepos\TextBasedRPG-Map\TextBasedRPG-Map\obj\Debug\TextBasedRPG-Map.csproj.AssemblyReference.cache
+C:\Users\W0487821\Documents\MyRepos\TextBasedRPG-Map\TextBasedRPG-Map\obj\Debug\TextBasedRPG-Map.csproj.CoreCompileInputs.cache
+C:\Users\W0487821\Documents\MyRepos\TextBasedRPG-Map\TextBasedRPG-Map\obj\Debug\TextBasedRPG-Map.exe
+C:\Users\W0487821\Documents\MyRepos\TextBasedRPG-Map\TextBasedRPG-Map\obj\Debug\TextBasedRPG-Map.pdb

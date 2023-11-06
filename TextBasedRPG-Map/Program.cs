@@ -9,6 +9,7 @@ namespace TextBasedRPG_Map
 {
     internal class Program
     {
+        
         static char[,] map = new char[,] // dimensions defined by following data:
     {
         {'^','^','`','`','`','`','*','*','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','~','~','~','`','`','`'},
@@ -21,9 +22,13 @@ namespace TextBasedRPG_Map
         {'`','`','`','`','`','~','~','~','~','`','`','`','`','`','`','`','`','`','`','`','`','`','`','^','^','^','^','`','`','`'},
         {'`','`','`','`','`','`','`','~','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`'},
         {'`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`'},
+        {'`','`','`','`','`','`','`','`','`','`','`','o','o','o','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`'},
+        {'`','`','`','`','`','`','`','`','`','`','`','`','o','o','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`'},
+        {'`','`','`','`','`','`','`','`','`','`','`','`','o','o','o','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`'},
+        {'`','`','`','`','`','`','`','`','`','`','`','`','o','o','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`'},
     };
 
-       static void SetColorAndDrawConsole(char Character , ConsoleColor Color)
+        static void SetColorAndDrawConsole(char Character , ConsoleColor Color)
         {
             ConsoleColor colOriginal = Console.ForegroundColor;
             Console.ForegroundColor = Color;
@@ -75,6 +80,8 @@ namespace TextBasedRPG_Map
         static void DisplayMap(int iScale = 1)
         {
 
+            int iLegendPadding = 0;
+
             Console.Write("+"); // top left corner
 
             for (int iBorderChar = 0;iBorderChar < map.GetLength(1) * iScale; iBorderChar++)
@@ -95,11 +102,31 @@ namespace TextBasedRPG_Map
                         for (int iCurrentScaleX = 0; iCurrentScaleX < iScale; iCurrentScaleX++)
                         {
                             switch (map[y,x])
-                            {
-                                case 'x':
-                                {
-                                    SetColorAndDrawConsole(map[y, x], ConsoleColor.Green);
+                            { 
+                                case '^':  // mountains
+                                    {
+                                         SetColorAndDrawConsole(map[y, x], ConsoleColor.DarkGray);
                                     break;
+                                }
+                                case '~': // water
+                                    {
+                                        SetColorAndDrawConsole(map[y, x], ConsoleColor.Blue);
+                                        break;
+                                }
+                                case '`':   // grass
+                                    {
+                                        SetColorAndDrawConsole(map[y, x], ConsoleColor.Green);
+                                        break;
+                                }
+                                case '*':  // trees
+                                    {
+                                        SetColorAndDrawConsole(map[y, x], ConsoleColor.DarkGreen);
+                                        break;
+                                }
+                                case 'o':   // lava
+                                {
+                                        SetColorAndDrawConsole(map[y, x], ConsoleColor.Red);
+                                        break;
                                 }
                                 default:
                                 {
@@ -114,6 +141,64 @@ namespace TextBasedRPG_Map
                     }
 
                     Console.Write("|");   //right border
+
+                    if (iLegendPadding <= 6)
+                    {
+                        Console.Write("        ");
+
+                        switch (iLegendPadding) 
+                        {
+                            case 0:
+                            {
+                                 Console.Write("=======LEGEND======");
+                                 break;
+                            }
+                            case 1:
+                            {
+                                Console.Write("Mountains = ");
+                                SetColorAndDrawConsole('^', ConsoleColor.DarkGray);
+                                break;
+                            }
+                            case 2:
+                            {
+                                Console.Write("Water = ");
+                                SetColorAndDrawConsole('~', ConsoleColor.Blue);
+                                break;
+                            }
+                            case 3:
+                            {
+                                Console.Write("Grass = ");
+                                SetColorAndDrawConsole('`', ConsoleColor.Green);
+                                break;
+                            }
+                            case 4:
+                            {
+                                Console.Write("Trees = ");
+                                SetColorAndDrawConsole('*', ConsoleColor.DarkGreen);
+                                break;
+                            }
+                            case 5:
+                            {
+                                Console.Write("Lava = ");
+                                SetColorAndDrawConsole('o', ConsoleColor.Red);
+                                break;
+                            }
+                            case 6:
+                            {
+                                Console.Write("===================");
+                                break;
+                            }
+                            default:
+                            { 
+                                break;
+                            }
+
+
+                       }
+
+                        iLegendPadding += 1;
+                    }
+
                     Console.WriteLine(); //\n for next line
 
                 }

@@ -12,21 +12,30 @@ namespace TextBasedRPG_Map
         
         static char[,] map = new char[,] // dimensions defined by following data:
     {
-        {'^','^','`','`','`','`','*','*','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','~','~','~','`','`','`'},
-        {'^','^','`','`','`','*','*','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','~','~','~','`','`','`','`','`'},
-        {'^','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`'},
-        {'`','`','`','`','~','~','~','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`'},
-        {'`','`','`','`','~','~','~','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`'},
-        {'`','`','`','~','~','~','~','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','^','^','`','`','`','`','`','`'},
-        {'`','`','`','`','`','~','~','~','`','`','`','`','`','`','`','`','`','`','`','`','`','^','^','^','^','`','`','`','`','`'},
-        {'`','`','`','`','`','~','~','~','~','`','`','`','`','`','`','`','`','`','`','`','`','`','`','^','^','^','^','`','`','`'},
-        {'`','`','`','`','`','`','`','~','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`'},
-        {'`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`'},
-        {'`','`','`','`','`','`','`','`','`','`','`','o','o','o','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`'},
-        {'`','`','`','`','`','`','`','`','`','`','`','`','o','o','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`'},
-        {'`','`','`','`','`','`','`','`','`','`','`','`','o','o','o','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`'},
+        {'^','^','`','*','*','*','*','*','`','`','`','`','~','`','`','`','`','`','`','`','`','`','`','`','~','~','~','`','`','`'},
+        {'^','^','*','*','*','*','*','`','~','~','~','~','~','`','`','`','`','`','`','`','`','`','~','~','~','`','`','`','`','`'},
+        {'^','*','*','*','*','`','~','~','~','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`'},
+        {'`','*','*','*','~','~','~','`','`','`','`','*','*','`','`','`','`','`','^','^','^','`','`','`','`','`','`','`','`','`'},
+        {'`','*','*','~','~','~','~','`','`','`','`','*','*','*','`','`','`','^','^','^','^','^','^','^','`','`','`','`','`','`'},
+        {'`','`','~','~','~','~','~','`','`','`','`','*','*','*','`','`','`','^','^','^','^','^','^','^','`','`','`','`','`','`'},
+        {'`','`','`','~','~','~','~','~','`','`','`','`','*','*','`','`','`','^','^','o','o','^','^','^','^','`','`','`','`','`'},
+        {'`','`','`','`','~','~','~','~','~','`','`','`','`','`','`','`','`','^','^','o','^','^','^','^','^','^','^','`','`','`'},
+        {'`','`','`','`','`','~','~','~','`','`','`','`','`','`','`','`','o','o','o','o','^','`','`','`','`','`','`','`','`','`'},
+        {'`','`','`','`','`','`','`','`','`','`','`','`','o','o','o','o','o','^','^','^','^','`','`','`','`','`','`','`','`','`'},
+        {'`','`','`','`','`','`','`','`','`','`','`','o','o','o','o','`','`','`','`','`','`','*','*','*','`','`','`','`','`','`'},
+        {'`','`','`','`','`','`','`','`','`','`','o','o','o','o','o','o','`','`','`','`','`','*','*','*','`','`','`','`','`','`'},
+        {'`','`','`','`','`','`','`','`','`','o','o','o','o','o','o','o','o','`','`','`','`','*','*','*','*','`','`','`','`','`'},
+        {'`','`','`','`','`','`','`','`','`','`','o','o','o','o','o','o','`','`','`','`','`','`','*','*','*','`','`','`','`','`'},
+        {'`','`','`','`','`','`','`','`','`','`','`','o','o','o','o','`','`','`','`','`','`','`','`','*','*','`','`','`','`','`'},
         {'`','`','`','`','`','`','`','`','`','`','`','`','o','o','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`','`'},
     };
+
+        // map legend (in code):
+        // ^ = mountain
+        // ` = grass
+        // ~ = water
+        // * = trees
+        // o = lava
 
         static void SetColorAndDrawConsole(char Character , ConsoleColor Color)
         {
@@ -50,9 +59,9 @@ namespace TextBasedRPG_Map
             Console.WriteLine("MiniGame");
             Console.WriteLine();
 
-            Console.WriteLine("==================Scaled Map 1x1==================");
+            Console.WriteLine("==================Unscaled Map 1x1==================");
             Console.WriteLine();
-            DisplayMap(1);
+            DisplayMap();
             Console.WriteLine();
             Console.WriteLine("==================================================");
 
@@ -82,12 +91,12 @@ namespace TextBasedRPG_Map
 
             int iLegendPadding = 0;
 
-            Console.Write("+"); // top left corner
+            Console.Write('\u250C'); // top left corner
 
             for (int iBorderChar = 0;iBorderChar < map.GetLength(1) * iScale; iBorderChar++)
-                   Console.Write("-"); //top border
+                Console.Write('\u2500');  //top border
 
-            Console.Write("+"); //top right corner
+            Console.Write('\u2510');  //top right corner
 
             Console.WriteLine(); // next line 
 
@@ -95,7 +104,8 @@ namespace TextBasedRPG_Map
             {
                 for (int iCurrentScaleY = 0; iCurrentScaleY < iScale; iCurrentScaleY++)
                 {
-                    Console.Write("|");  // left border
+                    //Console.Write("|");  // left border
+                    Console.Write('\u2502');
 
                     for (int x = 0; x < map.GetLength(1); x++)
                     {
@@ -104,29 +114,29 @@ namespace TextBasedRPG_Map
                             switch (map[y,x])
                             { 
                                 case '^':  // mountains
-                                    {
-                                         SetColorAndDrawConsole(map[y, x], ConsoleColor.DarkGray);
+                                {
+                                    SetColorAndDrawConsole('^', ConsoleColor.DarkGray);
                                     break;
                                 }
                                 case '~': // water
-                                    {
-                                        SetColorAndDrawConsole(map[y, x], ConsoleColor.Blue);
-                                        break;
+                                {
+                                    SetColorAndDrawConsole('\u2591', ConsoleColor.Blue);
+                                    break;
                                 }
                                 case '`':   // grass
-                                    {
-                                        SetColorAndDrawConsole(map[y, x], ConsoleColor.Green);
-                                        break;
+                                {
+                                    SetColorAndDrawConsole('`', ConsoleColor.Green);
+                                    break;
                                 }
                                 case '*':  // trees
-                                    {
-                                        SetColorAndDrawConsole(map[y, x], ConsoleColor.DarkGreen);
-                                        break;
+                                {
+                                    SetColorAndDrawConsole('\u00A5', ConsoleColor.DarkGreen);
+                                    break;
                                 }
                                 case 'o':   // lava
                                 {
-                                        SetColorAndDrawConsole(map[y, x], ConsoleColor.Red);
-                                        break;
+                                    SetColorAndDrawConsole('\u2592', ConsoleColor.DarkRed);
+                                    break;
                                 }
                                 default:
                                 {
@@ -140,7 +150,7 @@ namespace TextBasedRPG_Map
 
                     }
 
-                    Console.Write("|");   //right border
+                    Console.Write('\u2502'); //right border
 
                     if (iLegendPadding <= 6)
                     {
@@ -162,7 +172,7 @@ namespace TextBasedRPG_Map
                             case 2:
                             {
                                 Console.Write("Water = ");
-                                SetColorAndDrawConsole('~', ConsoleColor.Blue);
+                                SetColorAndDrawConsole('\u2591', ConsoleColor.Blue);
                                 break;
                             }
                             case 3:
@@ -174,13 +184,14 @@ namespace TextBasedRPG_Map
                             case 4:
                             {
                                 Console.Write("Trees = ");
-                                SetColorAndDrawConsole('*', ConsoleColor.DarkGreen);
+                                SetColorAndDrawConsole('\u00A5', ConsoleColor.DarkGreen);
                                 break;
                             }
                             case 5:
                             {
                                 Console.Write("Lava = ");
-                                SetColorAndDrawConsole('o', ConsoleColor.Red);
+                                SetColorAndDrawConsole('\u2592', ConsoleColor.DarkRed);
+                                    
                                 break;
                             }
                             case 6:
@@ -204,12 +215,12 @@ namespace TextBasedRPG_Map
                 }
             }
 
-            Console.Write("+"); // bottom left corner
+            Console.Write('\u2514');  // bottom left corner
 
             for (int iBorderChar = 0; iBorderChar < map.GetLength(1) * iScale; iBorderChar++)
-                Console.Write("-"); //bottom border
+                Console.Write('\u2500'); //bottom border
 
-            Console.Write("+"); // bottom right corner
+            Console.Write('\u2518');  // bottom right corner
 
             Console.WriteLine(); // finish map
         }
